@@ -276,8 +276,7 @@ public class RTextEditorView extends WebView {
     public void setFormat(@ToolType int type) {
         switch (type) {
             case ToolType.BOLD:
-                screenshot();
-                //setBold();
+                setBold();
                 break;
             case ToolType.ITALIC:
                 setItalic();
