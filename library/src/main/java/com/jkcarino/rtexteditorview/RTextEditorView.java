@@ -29,10 +29,12 @@ public class RTextEditorView extends WebView {
 
     private boolean isIncognitoModeEnabled;
     private String content;
-    private OnTextChangeListener onTextChangeListener;
+    private JsListener jsListener;
 
-    public interface OnTextChangeListener {
+    public interface JsListener {
         void onTextChanged(String content);
+
+        void onImageCaptured(String image);
     }
 
     public RTextEditorView(Context context) {
@@ -87,16 +89,23 @@ public class RTextEditorView extends WebView {
         this.isIncognitoModeEnabled = enabled;
     }
 
-    public void setOnTextChangeListener(@Nullable OnTextChangeListener listener) {
-        this.onTextChangeListener = listener;
+    public void setJsListener(@Nullable JsListener listener) {
+        this.jsListener = listener;
     }
 
     @JavascriptInterface
     public void onEditorContentChanged(String content) {
-        if (onTextChangeListener != null) {
-            onTextChangeListener.onTextChanged(content);
+        if (jsListener != null) {
+            jsListener.onTextChanged(content);
         }
         this.content = content;
+    }
+
+    @JavascriptInterface
+    public void onImageCaptured(String image) {
+        if (jsListener != null) {
+            jsListener.onImageCaptured(image);
+        }
     }
 
     @JavascriptInterface
@@ -260,10 +269,15 @@ public class RTextEditorView extends WebView {
         exec("javascript:editHtml();");
     }
 
+    public void screenshot() {
+        exec("javascript:screenshot();");
+    }
+
     public void setFormat(@ToolType int type) {
         switch (type) {
             case ToolType.BOLD:
-                setBold();
+                screenshot();
+                //setBold();
                 break;
             case ToolType.ITALIC:
                 setItalic();

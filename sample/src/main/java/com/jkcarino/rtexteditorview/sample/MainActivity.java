@@ -41,10 +41,14 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
                 + "</strike></u></i></b></p>");
 
         // Listen to the editor's text changes
-        editor.setOnTextChangeListener(new RTextEditorView.OnTextChangeListener() {
+        editor.setJsListener(new RTextEditorView.JsListener() {
             @Override
             public void onTextChanged(String content) {
                 Log.d(TAG, "onTextChanged: " + content);
+            }
+            @Override
+            public void onImageCaptured(String image) {
+                Log.d(TAG, "onImageCaptured: " + image);
             }
         });
 
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        editor.setOnTextChangeListener(null);
+        editor.setJsListener(null);
         editor.removeAllViews();
         editor.destroy();
         editor = null;

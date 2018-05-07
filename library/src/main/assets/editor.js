@@ -155,3 +155,14 @@ var insertText = function(text) {
 var editHtml = function() {
     $('#summernote').summernote('codeview.toggle');
 };
+
+var screenshot = function() {
+    html2canvas($("body")[0]).then(function(canvas)
+    {
+        document.body.appendChild(canvas);
+        // TODO: make png
+        var data = canvas.toDataURL('image/png');
+        // TODO: call onImageCaptured android function here
+        RTextEditorView.onImageCaptured(data);
+    });
+};
