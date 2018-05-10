@@ -156,10 +156,12 @@ var editHtml = function() {
     $('#summernote').summernote('codeview.toggle');
 };
 
-function screenshot() {
+var screenshot = function(width, height) {
+    $('#summernote').scrollTop = 0;
+
     html2canvas(document.body, {
-//        canvas: $('#cvs')[0],
-//        async: true
+        width: width,
+        height: height
     }).then(function(canvas)
     {
         var data = canvas.toDataURL();

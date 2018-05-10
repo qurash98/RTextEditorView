@@ -269,15 +269,14 @@ public class RTextEditorView extends WebView {
         exec("javascript:editHtml();");
     }
 
-    public void screenshot() {
-        exec("javascript:screenshot();");
+    public void screenshot(Integer width, Integer height) {
+        exec("javascript:screenshot(width, height);");
     }
 
     public void setFormat(@ToolType int type) {
         switch (type) {
             case ToolType.BOLD:
-                screenshot();
-                //setBold();
+                setBold();
                 break;
             case ToolType.ITALIC:
                 setItalic();
