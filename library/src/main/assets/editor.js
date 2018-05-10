@@ -156,13 +156,13 @@ var editHtml = function() {
     $('#summernote').summernote('codeview.toggle');
 };
 
-var screenshot = function() {
-    html2canvas($("body")[0]).then(function(canvas)
+function screenshot() {
+    html2canvas(document.body, {
+//        canvas: $('#cvs')[0],
+//        async: true
+    }).then(function(canvas)
     {
-        document.body.appendChild(canvas);
-        // TODO: make png
-        var data = canvas.toDataURL('image/png');
-        // TODO: call onImageCaptured android function here
+        var data = canvas.toDataURL();
         RTextEditorView.onImageCaptured(data);
     });
 };

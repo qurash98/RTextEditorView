@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         // Set initial content
         editor.setHtml("<p><b><i><u><strike>"
                 + "The quick brown fox jumps over the lazy dog."
-                + "</strike></u></i></b></p>");
+                + "</strike></u></i></b></p><br><br><br><br><br><br>"
+                + "<p><b><i><u><strike>"
+                        + "The quick brown fox jumps over the lazy dog."
+                        + "</strike></u></i></b></p>");
 
         // Listen to the editor's text changes
         editor.setJsListener(new RTextEditorView.JsListener() {
