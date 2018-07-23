@@ -30,13 +30,19 @@
         color: #2F2F2F;
         outline: none;
     }
+    #summernote {
+        position: fixed;
+        overflow-y:scroll;
+    }
+    .table-bordered > td {
+        border: 1px solid #0d0d0d;
+    }
 </style>
 <body>
     <div id="summernote"></div>
     <script type="text/javascript">
         $(document).ready(function() {
           $('#summernote').summernote({
-            height: 300,
             disableResizeEditor: true,
             focus: true,
             shortcuts: false,
