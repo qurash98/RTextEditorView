@@ -168,3 +168,9 @@ var screenshot = function(width, height) {
         RTextEditorView.onImageCaptured(data);
     });
 };
+
+var getEditorSize = function() {
+    var width = $('.note-editing-area').width();
+    var height = $('.note-editing-area').height();
+    RTextEditorView.onEditorSizeCame(width, height);
+};

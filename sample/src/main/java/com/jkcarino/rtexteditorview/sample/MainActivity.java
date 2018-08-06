@@ -53,6 +53,11 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
             public void onImageCaptured(String image) {
                 Log.d(TAG, "onImageCaptured: " + image);
             }
+
+            @Override
+            public void onEditorSizeCame(String width, String height) {
+                Log.w(TAG, "onEditorSizeCame: " + width + ", " + height);
+            }
         });
 
         // Text foreground color

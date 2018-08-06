@@ -35,6 +35,8 @@ public class RTextEditorView extends WebView {
         void onTextChanged(String content);
 
         void onImageCaptured(String image);
+
+        void onEditorSizeCame(String width, String height);
     }
 
     public RTextEditorView(Context context) {
@@ -105,6 +107,13 @@ public class RTextEditorView extends WebView {
     public void onImageCaptured(String image) {
         if (jsListener != null) {
             jsListener.onImageCaptured(image);
+        }
+    }
+
+    @JavascriptInterface
+    public void onEditorSizeCame(String width, String height) {
+        if (jsListener != null) {
+            jsListener.onEditorSizeCame(width, height);
         }
     }
 
@@ -271,6 +280,10 @@ public class RTextEditorView extends WebView {
 
     public void screenshot(Integer width, Integer height) {
         exec("javascript:screenshot(width, height);");
+    }
+
+    public void getEditorSize() {
+        exec("javascript:getEditorSize();");
     }
 
     public void setFormat(@ToolType int type) {
