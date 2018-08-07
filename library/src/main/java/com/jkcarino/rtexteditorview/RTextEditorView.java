@@ -11,10 +11,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v13.view.inputmethod.EditorInfoCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.webkit.JavascriptInterface;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -35,8 +37,6 @@ public class RTextEditorView extends WebView {
         void onTextChanged(String content);
 
         void onImageCaptured(String image);
-
-        void onEditorSizeCame(String width, String height);
 
         void onTouch();
     }
@@ -109,13 +109,6 @@ public class RTextEditorView extends WebView {
     public void onImageCaptured(String image) {
         if (jsListener != null) {
             jsListener.onImageCaptured(image);
-        }
-    }
-
-    @JavascriptInterface
-    public void onEditorSizeCame(String width, String height) {
-        if (jsListener != null) {
-            jsListener.onEditorSizeCame(width, height);
         }
     }
 
@@ -299,8 +292,12 @@ public class RTextEditorView extends WebView {
         exec("javascript:screenshot(width, height);");
     }
 
-    public void getEditorSize() {
-        exec("javascript:getEditorSize();");
+    public void getEditorWidth(ValueCallback<String> valueCallback) {
+        exec("javascript:getEditorWidth();", valueCallback);
+    }
+
+    public void getEditorHeight(ValueCallback<String> valueCallback) {
+        exec("javascript:getEditorHeight();", valueCallback);
     }
 
     public void scrollToTop() {
@@ -314,10 +311,22 @@ public class RTextEditorView extends WebView {
     public void setFormat(@ToolType int type) {
         switch (type) {
             case ToolType.BOLD:
-                setBold();
+                getEditorWidth(new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String value) {
+                        Log.w("HI", "Width is: " + value);
+                    }
+                });
+//                setBold();
                 break;
             case ToolType.ITALIC:
-                setItalic();
+                getEditorHeight(new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String value) {
+                        Log.w("HI", "Height is: " + value);
+                    }
+                });
+//                setItalic();
                 break;
             case ToolType.UNDERLINE:
                 setUnderline();
@@ -418,9 +427,29 @@ public class RTextEditorView extends WebView {
         }
     }
 
+    protected void exec(@NonNull final String trigger, final ValueCallback<String> valueCallback) {
+        if (isReady) {
+            load(trigger, valueCallback);
+        } else {
+            postDelayed(new Runnable() {
+                @Override public void run() {
+                    exec(trigger, valueCallback);
+                }
+            }, 100);
+        }
+    }
+
     private void load(@NonNull String trigger) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             evaluateJavascript(trigger, null);
+        } else {
+            loadUrl(trigger);
+        }
+    }
+
+    private void load(@NonNull String trigger, ValueCallback<String> valueCallback) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            evaluateJavascript(trigger, valueCallback);
         } else {
             loadUrl(trigger);
         }

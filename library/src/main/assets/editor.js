@@ -169,10 +169,12 @@ var screenshot = function(width, height) {
     });
 };
 
-var getEditorSize = function() {
-    var width = $('.note-editing-area').width();
-    var height = $('.note-editing-area').height();
-    RTextEditorView.onEditorSizeCame(width, height);
+var getEditorWidth = function() {
+    return $('.note-editing-area').width();
+};
+
+var getEditorHeight = function() {
+    return $('.note-editing-area').height();
 };
 
 var scrollToTop = function() {
