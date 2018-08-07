@@ -174,3 +174,27 @@ var getEditorSize = function() {
     var height = $('.note-editing-area').height();
     RTextEditorView.onEditorSizeCame(width, height);
 };
+
+var scrollToTop = function() {
+    window.scrollTo(0, 0);
+}
+
+document.addEventListener('touchstart', function(e) {
+    RTextEditorView.onTouch();
+}, false);
+
+var focus = function() {
+    $(".note-editing-area").focus();
+}
+
+var blur = function() {
+    $(".note-editing-area").blur();
+}
+
+var showCursor = function() {
+    $(".note-editing-area:focus").css("outline", "inherit");
+}
+
+var hideCursor = function() {
+    $(".note-editing-area:focus").css("outline", "none");
+}

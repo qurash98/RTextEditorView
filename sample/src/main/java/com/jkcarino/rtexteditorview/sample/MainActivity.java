@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
             public void onEditorSizeCame(String width, String height) {
                 Log.w(TAG, "onEditorSizeCame: " + width + ", " + height);
             }
+
+            @Override
+            public void onTouch() {
+                Log.w(TAG, "onTouch");
+            }
         });
 
         // Text foreground color

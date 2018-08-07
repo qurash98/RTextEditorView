@@ -37,6 +37,8 @@ public class RTextEditorView extends WebView {
         void onImageCaptured(String image);
 
         void onEditorSizeCame(String width, String height);
+
+        void onTouch();
     }
 
     public RTextEditorView(Context context) {
@@ -118,6 +120,13 @@ public class RTextEditorView extends WebView {
     }
 
     @JavascriptInterface
+    public void onTouch() {
+        if (jsListener != null) {
+            jsListener.onTouch();
+        }
+    }
+
+    @JavascriptInterface
     public void updateCurrentStyle(String style) {
         // TODO: Update buttons state
     }
@@ -144,6 +153,14 @@ public class RTextEditorView extends WebView {
 
     public void focus() {
         exec("javascript:setFocus();");
+    }
+
+    public void showCursor() {
+        exec("javascript:showCursor();");
+    }
+
+    public void hideCursor() {
+        exec("javascript:hideCursor();");
     }
 
     public void setHtml(@NonNull String html) {
@@ -284,6 +301,14 @@ public class RTextEditorView extends WebView {
 
     public void getEditorSize() {
         exec("javascript:getEditorSize();");
+    }
+
+    public void scrollToTop() {
+        exec("javascript:scrollToTop();");
+    }
+
+    public void blur() {
+        exec("javascript:blur();");
     }
 
     public void setFormat(@ToolType int type) {
