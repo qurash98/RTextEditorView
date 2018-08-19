@@ -174,7 +174,7 @@ var getEditorWidth = function() {
 };
 
 var getEditorHeight = function() {
-    return $('.note-editing-area').height();
+    return $('.note-editable').height();
 };
 
 var scrollToTop = function() {
