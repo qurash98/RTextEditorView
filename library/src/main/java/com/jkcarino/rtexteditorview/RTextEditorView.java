@@ -311,22 +311,10 @@ public class RTextEditorView extends WebView {
     public void setFormat(@ToolType int type) {
         switch (type) {
             case ToolType.BOLD:
-                getEditorWidth(new ValueCallback<String>() {
-                    @Override
-                    public void onReceiveValue(String value) {
-                        Log.w("HI", "Width is: " + value);
-                    }
-                });
-//                setBold();
+                setBold();
                 break;
             case ToolType.ITALIC:
-                getEditorHeight(new ValueCallback<String>() {
-                    @Override
-                    public void onReceiveValue(String value) {
-                        Log.w("HI", "Height is: " + value);
-                    }
-                });
-//                setItalic();
+                setItalic();
                 break;
             case ToolType.UNDERLINE:
                 setUnderline();
