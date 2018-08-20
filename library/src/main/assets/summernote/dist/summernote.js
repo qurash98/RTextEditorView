@@ -5199,6 +5199,7 @@
           position: 'absolute',
           left: -100000,
           opacity: 0
+          color: '#ffffff'
         });
         $editable.before(this.$paste);
 
