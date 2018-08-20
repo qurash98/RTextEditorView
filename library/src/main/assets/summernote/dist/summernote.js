@@ -1667,7 +1667,7 @@
 
     this.enable = function () {
       this.layoutInfo.editable.attr('contenteditable', true);
-      this.layoutInfo.editable.attr('background-color', '#ffffff');
+      this.layoutInfo.editable.attr("css", { backgroundColor: "#ffffff" });
       this.invoke('toolbar.activate', true);
       this.triggerEvent('disable', false);
     };
