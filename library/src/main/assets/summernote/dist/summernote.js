@@ -5198,7 +5198,7 @@
         this.$paste = $('<div tabindex="-1" />').attr('contenteditable', true).css({
           position: 'absolute',
           left: -100000,
-          opacity: 0
+          opacity: 0,
           color: '#ffffff'
         });
         $editable.before(this.$paste);
