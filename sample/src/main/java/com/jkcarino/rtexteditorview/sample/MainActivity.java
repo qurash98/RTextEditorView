@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         // Enable keyboard's incognito mode
         editor.setIncognitoModeEnabled(true);
 
+        editor.disable();
         RTextEditorToolbar editorToolbar = findViewById(R.id.editor_toolbar);
         editorToolbar.setEditorView(editor);
 
