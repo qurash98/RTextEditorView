@@ -160,6 +160,10 @@ public class RTextEditorView extends WebView {
         exec("javascript:setHtml('" + html + "');");
     }
 
+    public void pasteHtml(@NonNull String html) {
+        exec("javascript:pasteHTML('" + html + "')");
+    }
+
     public String getHtml() {
         return content;
     }
@@ -192,7 +196,7 @@ public class RTextEditorView extends WebView {
         exec("javascript:setNormal();");
     }
 
-    public void setHeading(@IntRange(from=1,to=6) int value) {
+    public void setHeading(@IntRange(from = 1, to = 6) int value) {
         exec("javascript:setHeading('" + value + "');");
     }
 
@@ -408,7 +412,8 @@ public class RTextEditorView extends WebView {
             load(trigger);
         } else {
             postDelayed(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     exec(trigger);
                 }
             }, 100);
@@ -420,7 +425,8 @@ public class RTextEditorView extends WebView {
             load(trigger, valueCallback);
         } else {
             postDelayed(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     exec(trigger, valueCallback);
                 }
             }, 100);

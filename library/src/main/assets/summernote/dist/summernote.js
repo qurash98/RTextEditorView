@@ -4811,7 +4811,7 @@
         var firstSpan = list.head(spans);
 
         $(spans).css({
-          'font-size': value + 'em'
+          'font-size': value + 'vw'
         });
 
         // [workaround] added styled bogus span for style
@@ -4824,7 +4824,7 @@
       } else {
         beforeCommand();
         $(style.styleNodes(rng)).css({
-          'font-size': value + 'em'
+          'font-size': value + 'vw'
         });
         afterCommand();
       }
