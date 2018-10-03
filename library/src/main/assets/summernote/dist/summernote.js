@@ -4806,12 +4806,12 @@
     this.fontSize = function (value) {
       var rng = this.createRange();
 
-      if (rng && rng.isCollapsed()) {
+      if (rng && rng.is Collapsed()) {
         var spans = style.styleNodes(rng);
         var firstSpan = list.head(spans);
 
         $(spans).css({
-          'font-size': value + 'vw'
+          'font-size': value + 'em'
         });
 
         // [workaround] added styled bogus span for style
@@ -4824,7 +4824,7 @@
       } else {
         beforeCommand();
         $(style.styleNodes(rng)).css({
-          'font-size': value + 'vw'
+          'font-size': value + 'em'
         });
         afterCommand();
       }
