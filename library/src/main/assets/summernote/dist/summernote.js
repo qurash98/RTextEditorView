@@ -4806,7 +4806,7 @@
     this.fontSize = function (value) {
       var rng = this.createRange();
 
-      if (rng && rng.is Collapsed()) {
+      if (rng && rng.isCollapsed()) {
         var spans = style.styleNodes(rng);
         var firstSpan = list.head(spans);
 
@@ -4822,7 +4822,7 @@
           $editable.data(KEY_BOGUS, firstSpan);
         }
       } else {
-        beforeCommand();
+        beforeCommand();f
         $(style.styleNodes(rng)).css({
           'font-size': value + 'vw'
         });
