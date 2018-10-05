@@ -59,6 +59,21 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
             public void onTouch() {
                 Log.w(TAG, "onTouch");
             }
+
+            @Override
+            public void computeVerticalScrollRange(int range) {
+                Log.d(TAG, "computeVerticalScrollRange: " + range);
+            }
+
+            @Override
+            public void computeVerticalScrollExtent(int extent) {
+                Log.d(TAG, "computeVerticalScrollExtent: " + extent);
+            }
+
+            @Override
+            public void computeVerticalScrollOffset(int offset) {
+                Log.d(TAG, "computeVerticalScrollOffset: " + offset);
+            }
         });
 
         // Text foreground color

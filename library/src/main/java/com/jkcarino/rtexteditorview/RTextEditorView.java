@@ -3,6 +3,7 @@ package com.jkcarino.rtexteditorview;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v13.view.inputmethod.EditorInfoCompat;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -39,6 +41,12 @@ public class RTextEditorView extends WebView {
         void onImageCaptured(String image);
 
         void onTouch();
+
+        void computeVerticalScrollRange(int range);
+
+        void computeVerticalScrollExtent(int extent);
+
+        void computeVerticalScrollOffset(int offset);
     }
 
     public RTextEditorView(Context context) {
@@ -101,7 +109,15 @@ public class RTextEditorView extends WebView {
     public void onEditorContentChanged(String content) {
         if (jsListener != null) {
             jsListener.onTextChanged(content);
+            jsListener.computeVerticalScrollRange(computeVerticalScrollRange());
+            jsListener.computeVerticalScrollExtent(computeVerticalScrollExtent());
+            jsListener.computeVerticalScrollOffset(computeVerticalScrollOffset());
         }
+        int range = computeVerticalScrollRange() - computeVerticalScrollExtent();
+        Log.d("MrcK","computeVerticalScrollRange() = "+computeVerticalScrollRange());
+        Log.d("MrcK","computeVerticalScrollExtent() = "+computeVerticalScrollExtent());
+        Log.d("MrCc","range = "+range);
+        Log.d("MrCc","computeVerticalScrollOffset = "+computeVerticalScrollOffset());
         this.content = content;
     }
 
@@ -333,22 +349,22 @@ public class RTextEditorView extends WebView {
                 setNormal();
                 break;
             case ToolType.H1:
-                setHeading(1);
+                setFontSize(1);
                 break;
             case ToolType.H2:
-                setHeading(2);
+                setFontSize(2);
                 break;
             case ToolType.H3:
-                setHeading(3);
+                setFontSize(3);
                 break;
             case ToolType.H4:
-                setHeading(4);
+                setFontSize(4);
                 break;
             case ToolType.H5:
-                setHeading(5);
+                setFontSize(5);
                 break;
             case ToolType.H6:
-                setHeading(6);
+                setFontSize(6);
                 break;
             case ToolType.SUPERSCRIPT:
                 setSuperscript();
