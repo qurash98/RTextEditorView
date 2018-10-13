@@ -25,7 +25,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class RTextEditorView extends WebView {
+public class    RTextEditorView extends WebView {
 
     private static final String ASSETS_EDITOR_HTML = "file:///android_asset/editor.html";
 
